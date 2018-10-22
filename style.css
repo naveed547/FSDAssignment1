@@ -1,0 +1,23 @@
+.loader {
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    opacity: 0.9;
+    top: 0;
+    bottom: 0;
+    display: none;
+}
+.loader img{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px;
+    margin-left: -20px;
+    z-index: 1;
+}
+.alert-dismissible {
+    position: absolute;
+    top: 0;
+    transform: translate(-50%, 0);
+    left: 50%;
+}
