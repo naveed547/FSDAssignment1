@@ -67,16 +67,33 @@ jQuery.noConflict();
                 });
                 this.cForm.find("button[type='submit']").click(function (evt) {
                     evt.preventDefault();
-                    gitObj.repoId.text( gitObj.issueId);
-                    gitObj.openAlert();
-                    gitObj.issueId='';
+                    var myForm = $(this).closest("form");
+                    //gitObj.openAlert();
+                    //removing access token for security reason
+                    $.ajax({
+                        url: "https://api.github.com/repos/" + gitObj.inputField.val() + "/" + gitObj.repoName.val() + "/issues?access_token=XXXXXXXX",
+                        type: "POST",
+                        data: JSON.stringify({
+                          title: myForm[0].repotitle.value, 
+                          body: myForm[0].repodesc.value
+                        }),
+                        success: function(data) {
+                            gitObj.repoId.text(gitObj.repoName.val() + " with id:#" + data.id);
+                            gitObj.openAlert();
+                            gitObj.issueId='';
+                        },
+                        error: function(err) {
+                            alert("Error in form");
+                            console.log(err);
+                        }
+                    })
                 });
                 this.repoList.on("click","a",function(evt){
                     evt.preventDefault();
                     gitObj.issueId = $(this).text();
+                    gitObj.cForm[0].reset()
                     $(this.dataset.href).modal("show");
                     gitObj.repoName.val(gitObj.issueId);
-                    gitObj.repoDesc.val('');
                 });
                 gitObj.issueSuccess.find(".close").click(function(){
                     gitObj.closeAlert();
