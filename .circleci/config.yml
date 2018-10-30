@@ -32,11 +32,18 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-          
+
       - run: 
           name: Setup Heroku
-          command:
-            - (echo "machine git.heroku.com"; echo " login $HEROKU_LOGINID"; echo " password $HEROKU_PWD") > ~/.netrc
+          command: |
+            cat > ~/.netrc << EOF
+              machine api.heroku.com
+                login $HEROKU_LOGINID
+                password $HEROKU_PWD
+              machine git.heroku.com
+                login $HEROKU_LOGINID
+                password $HEROKU_PWD
+            EOF
       - run:
           name: Deploy to Heroku
           commands:
