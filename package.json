@@ -1,0 +1,27 @@
+{
+  "name": "FSD-Assigment1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "engines": {
+    "node": "10.12.0",
+    "npm": "6.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab-sapient.stackroute.in/nahmed3/Assignment1WHeroku.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "heroku": "^7.18.3"
+  }
+}
